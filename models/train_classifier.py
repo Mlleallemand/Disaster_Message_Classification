@@ -23,7 +23,7 @@ from nltk.corpus import stopwords
 nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
 
-from pywsd.utils import lemmatize_sentence
+# from pywsd.utils import lemmatize_sentence
 
 from sqlalchemy import create_engine
 
@@ -116,21 +116,21 @@ def tokenize(text):
     # resulting in slightly better performance. Please
     # read note in Readme for necessary packages.
     # ----------------------------------------------------
-    clean_tokens = lemmatize_sentence(text)
+    # clean_tokens = lemmatize_sentence(text)
     
     # Option 2 -------------------------------------------
     # uncomment following lines to use classical word net
     # lemmatizer without POS tagging
     # ----------------------------------------------------
-    # tokens = word_tokenize(text)
-    # lemmatizer = WordNetLemmatizer()
-    # stopword_list = set(stopwords.words('english'))
+    tokens = word_tokenize(text)
+    lemmatizer = WordNetLemmatizer()
+    stopword_list = set(stopwords.words('english'))
 
-    # for tok in tokens:
-    #     # remove English stopwords before lemmatizing
-    #     if tok not in stopword_list:
-    #         clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-    #         clean_tokens.append(clean_tok)
+    for tok in tokens:
+        # remove English stopwords before lemmatizing
+        if tok not in stopword_list:
+            clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+            clean_tokens.append(clean_tok)
 
     return clean_tokens               
                 

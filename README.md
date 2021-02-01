@@ -17,6 +17,7 @@ Data and parts of the script were provided as part of the "Data Scientist" nanod
 * [Numpy] version 1.18.5 
 * [Pandas] version 1.0.5
 * [Seaborn] version 0.11.1
+* [flask]
 * [matplotlib]
 * [sqlite3]
 * [sqlalchemy]
@@ -31,28 +32,33 @@ Data and parts of the script were provided as part of the "Data Scientist" nanod
 | Folder | Filename | Description|
 | -------- | -------- | -----------|
 | main | model_classification_results.png | classification results of the model, generated after training in train_classifier.py|
+| main | model_classification_results_GS_optimized.png | classification results of the model, optimized using Grid Search|
+
 | data | process_data.py | script to load, preprocess and store 						   data in SQL database |
 | data | disaster_categories.csv | categories for tweets |
 | data | disaster_messages.csv | raw input data containing tweets |
-| data | DisasterResponse.db | SQL database with cleaned data |
 | models | train_classifier.py | Runs ML pipeline to train classifier and saves the trained model in the folder |
 | models | classifier.pkl | trained model saved by train_classifier.py |
-| app | run.py | script to run the Flask webapp |
+| app | run.py | script to run the Flask webapp (must not be called outside app folder)|
 | app/templates | master.html | necessary for webapp, provided bz Udacity |
 | app/templates | go.html | necessary for webapp, provided by Udacity |
 
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
 
-    - To run ETL pipeline that cleans data and stores in database
-        `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
+    - To run ETL pipeline that cleans data and stores in database, use
+    
+    `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
 
-    - To run ML pipeline that trains classifier and saves
-        `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
+    - To run the ML pipeline that trains the classifier and saves the model, use
+        
+    `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
+
       If you want to use GridSearch to optimize model parameters,
       uncomment line 417 in train_classifier and comment line 416
 
 2. Run the following command in the app's directory to run your web app.
+
     `python run.py`
 
 3. In your web browser, go to http://0.0.0.0:3001/
@@ -65,15 +71,14 @@ Potential reasons / optimization options:
 * training by different genres - as news contains often very many different topics in one message thus making classification more difficult.
 
 ### Note:
-When using pywsd for better lemmatization performance, you need to install pyswd and then downgrade the wn package using
+When using pywsd for (slightly) better lemmatization performance using POS tagging, you need to install pyswd and then downgrade the wn package using
 
-		pip install pyswd*
-		pip install -U wn==0.0.23*
+		pip install pyswd
+		pip install -U wn==0.0.23
 
 You also need to download the averaged perceptron tagger by adding the line below to the import statements in train_classifier.py
 
-		nltk.download('averaged_perceptron_tagger')*
-
+		nltk.download('averaged_perceptron_tagger')
 
 [Numpy]:<https://numpy.org>
 [Scipy]:<https://scipy.org>
@@ -88,6 +93,7 @@ You also need to download the averaged perceptron tagger by adding the line belo
 [pickle]:<https://docs.python.org/3/library/pickle.html>
 [nltk]:<https://www.nltk.org/>
 [pywsd]:<https://pypi.org/project/pywsd/>
+[flask]:<https://flask.palletsprojects.com/en/1.1.x/>
 
 [errno]:<>
 [os]:<>

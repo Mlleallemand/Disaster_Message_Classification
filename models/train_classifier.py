@@ -125,7 +125,7 @@ def tokenize(text):
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
     stopword_list = set(stopwords.words('english'))
-
+    clean_tokens = [];
     for tok in tokens:
         # remove English stopwords before lemmatizing
         if tok not in stopword_list:

@@ -33,7 +33,6 @@ Data and parts of the script were provided as part of the "Data Scientist" nanod
 | -------- | -------- | -----------|
 | main | model_classification_results.png | classification results of the model, generated after training in train_classifier.py|
 | main | model_classification_results_GS_optimized.png | classification results of the model, optimized using Grid Search|
-
 | data | process_data.py | script to load, preprocess and store 						   data in SQL database |
 | data | disaster_categories.csv | categories for tweets |
 | data | disaster_messages.csv | raw input data containing tweets |
@@ -57,7 +56,7 @@ Data and parts of the script were provided as part of the "Data Scientist" nanod
       If you want to use GridSearch to optimize model parameters,
       uncomment line 417 in train_classifier and comment line 416
 
-2. Run the following command in the app's directory to run your web app.
+2. Run the following command in the app directory to run your web app.
 
     `python run.py`
 
